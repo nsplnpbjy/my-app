@@ -100,8 +100,8 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const baseURL = "http://localhost:8080/";
-
+const baseURL = "https://comradegenrr.top:8080/";
+axios.defaults.headers.post["Access-Control-Allow-Origin"]="*";
 function CloseIcon() {
     return null;
 }
@@ -147,7 +147,8 @@ export default function Album() {
             headLineSend: headLine,
             mainTextSend: mainText
         }
-        axios.post(baseURL+"post",data).then((res)=>{console.log(res.data)});
+        // eslint-disable-next-line no-restricted-globals
+        axios.post(baseURL+"post",data).then((res)=>{if(res.data.isOk){alert("提交成功");location.reload()}else{alert("提交失败")}});
     }
 
     //更新函数
@@ -162,7 +163,8 @@ export default function Album() {
             mainTextSend: mainText,
             id:curruntId
         }
-        axios.post(baseURL+"update",data).then((res)=>{if(res.data.isOk){alert("更新成功")}else{alert("更新失败")}});
+        // eslint-disable-next-line no-restricted-globals
+        axios.post(baseURL+"update",data).then((res)=>{if(res.data.isOk){alert("更新成功");location.reload()}else{alert("更新失败")}});
     }
     //删除函数
     function deletor(){
@@ -173,7 +175,8 @@ export default function Album() {
         var data = {
             id:curruntId
         }
-        axios.post(baseURL+"delete",data).then((res)=>{if(res.data.isOk){alert("删除成功")}else{alert("删除成功")}});
+        // eslint-disable-next-line no-restricted-globals
+        axios.post(baseURL+"delete",data).then((res)=>{if(res.data.isOk){alert("删除成功");location.reload()}else{alert("删除成功")}});
     }
 
     //搜索函数
