@@ -15,6 +15,7 @@ import Link from '@material-ui/core/Link';
 import {Dialog, IconButton, InputBase, Slide, TextField} from "@material-ui/core";
 import {BorderColor, ChatBubble, LaptopChromebookOutlined, Search} from "@material-ui/icons";
 import axios from "axios";
+import moment from "moment";
 
 function Copyright() {
     return (
@@ -120,7 +121,7 @@ export default function Album() {
         mainText:"正在加载"
     }]);
     //提交所需信息
-    const [datetimeLocal,setDateTimeLocal] = useState('1991-12-25T01:20');
+    const [datetimeLocal,setDateTimeLocal] = useState(moment().format("YYYY-MM-DDTHH:mm"));
     const [headLine,setHeadLine] = useState("");
     const [mainText,setMainText] = useState('');
     const [curruntId,setCurruntId] = useState("");
@@ -255,7 +256,7 @@ export default function Album() {
                                 </Grid>
                                 <Grid item xs={3}>
                                     {/*清除按钮*/}
-                                    <Button variant="contained" fullWidth={true} onClick={()=>{setMainText('');setCurruntId('');setHeadLine("")}}>清除</Button>
+                                    <Button variant="contained" fullWidth={true} onClick={()=>{setMainText('');setCurruntId('');setHeadLine("");setDateTimeLocal(moment().format("YYYY-MM-DDTHH:mm"))}}>清除</Button>
                                 </Grid>
                                 <Grid item xs={3}>
                                     {/*提交按钮*/}
@@ -286,15 +287,18 @@ export default function Album() {
                                     />
                                     <CardContent className={classes.cardContent}>
                                         <Typography gutterBottom variant="h5" component="h2">
-                                            {card.headLine}
+                                            {card.headLine.trim().substring(0,15)+"..."}
                                         </Typography>
                                         <Typography>
-                                            {card.mainText.maxRows}
+                                            {card.mainText.trim().substring(0,15)+"..."}
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
                                         <Button size="small" color="primary" onClick={()=>{setHeadLine(card.headLine);setMainText(card.mainText);setDateTimeLocal(card.dateTime);setCurruntId(card.id)}}>
                                             <ChatBubble></ChatBubble>
+                                        </Button>
+                                        <Button size="small" color="primary" disabled={true}>
+                                            <label>{card.dateTime}</label>
                                         </Button>
                                     </CardActions>
                                 </Card>
