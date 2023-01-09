@@ -221,7 +221,7 @@ export default function Album() {
                     {/*这里开始是提交表格，使用Grid来分割*/}
                     <Container maxWidth="sm">
                         <form className={classes.container} noValidate>
-                            <Grid container spacing={3}>
+                            <Grid container spacing={1}>
                                 <Grid item xs={6}>
                                     {/*标题*/}
                                     <TextField id="outlined-basic" label="标题" variant="outlined" value={headLine} onChange={(e)=>{setHeadLine(e.target.value)}}/>
