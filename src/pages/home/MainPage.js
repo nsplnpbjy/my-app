@@ -315,6 +315,7 @@ export default function Album() {
                                                         </Button>
                                                         <h3>{diaCard.headLine}</h3>
                                                         <label>{diaCard.dateTime}</label>
+                                                        <p></p>
                                                         <Typography>{diaCard.mainText}</Typography>
                                                     </div>;
                                         </Dialog>
@@ -328,12 +329,11 @@ export default function Album() {
             {/* Footer */}
             <footer className={classes.footer}>
                 <Typography variant="h6" align="center" gutterBottom>
-                    Footer
+                    Made By ComradeGenrr
                 </Typography>
                 <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Something here to give the footer a purpose!
+                    This project has beed shared on <Link href={"https://github.com/nsplnpbjy/my-app"}>comradegenrr</Link>
                 </Typography>
-                <Copyright />
             </footer>
             {/* End footer */}
         </React.Fragment>
