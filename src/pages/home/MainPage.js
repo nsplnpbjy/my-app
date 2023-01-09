@@ -13,7 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import {Dialog, IconButton, InputBase, Slide, TextField} from "@material-ui/core";
-import {BorderColor, ChatBubble, LaptopChromebookOutlined, Search} from "@material-ui/icons";
+import {ArrowBack, BorderColor, ChatBubble, LaptopChromebookOutlined, Search} from "@material-ui/icons";
 import axios from "axios";
 import moment from "moment";
 
@@ -112,6 +112,7 @@ export default function Album() {
     //界面所需控制
     const [needChange,setNeedChange] = useState([1,2]);
     const [open, setOpen] = React.useState(false);
+    const [diaCard,setDiaCard] = useState("");
 
 
     //卡片信息
@@ -295,11 +296,28 @@ export default function Album() {
                                     </CardContent>
                                     <CardActions>
                                         <Button size="small" color="primary" onClick={()=>{setHeadLine(card.headLine);setMainText(card.mainText);setDateTimeLocal(card.dateTime);setCurruntId(card.id)}}>
+                                            <BorderColor></BorderColor>
+                                        </Button>
+                                        <Button size="small" color="primary" onClick={()=>{setOpen(true);setDiaCard(card);if (diaCard==null){
+                                            alert("此项无效");
+                                            setDiaCard(false);
+                                            return;
+                                        }}}>
                                             <ChatBubble></ChatBubble>
                                         </Button>
                                         <Button size="small" color="primary" disabled={true}>
-                                            <label>{card.dateTime}</label>
+                                            <label color={"black"}>{card.dateTime}</label>
                                         </Button>
+                                        <Dialog fullScreen={true} open={open}>
+                                                    <div align={"center"}>
+                                                        <Button size={"small"} color={"primary"} onClick={()=>{setOpen(false);setDiaCard("")}}>
+                                                            <ArrowBack></ArrowBack>
+                                                        </Button>
+                                                        <h3>{diaCard.headLine}</h3>
+                                                        <label>{diaCard.dateTime}</label>
+                                                        <Typography>{diaCard.mainText}</Typography>
+                                                    </div>;
+                                        </Dialog>
                                     </CardActions>
                                 </Card>
                             </Grid>
